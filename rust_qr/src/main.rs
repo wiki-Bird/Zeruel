@@ -3,6 +3,14 @@
 use rocket::fs::FileServer;
 use rocket_dyn_templates::Template;
 use std::collections::HashMap;
+use rocket::response::Redirect;
+use rocket::form::Form;
+
+#[derive(FromForm)]
+pub struct UrlForm {
+    big_url: String,
+}
+
 
 #[get("/")]
 fn index() -> Template {
@@ -10,25 +18,30 @@ fn index() -> Template {
 }
 
 #[get("/<short_url>")]
-fn get_big_url(short_url: String) -> Template {
+fn redirect_url(short_url: String) -> Template {
     let mut context = HashMap::new();
     context.insert("short_url", short_url);
 
     Template::render("short_url", &context)
 }
 
-#[post("/?<big_url>")]
-fn post_url(big_url: String) -> Template {
-    let mut context = HashMap::new();
-    context.insert("big_url", big_url);
+#[post("/", data = "<url_form>")]
+fn post_url(url_form: Form<UrlForm>) -> Redirect {
+    Redirect::to(format!("/submit/{}", url_form.big_url))
+}
 
+#[get("/submit/<url>")]
+fn submit_url(url: String) -> Template {
+    let mut context = HashMap::new();
+    context.insert("big_url", url);
     Template::render("big_url", &context)
 }
+
 
 #[launch]
 fn rocket() -> _ {
     rocket::build()
-        .mount("/", routes![index, get_big_url, post_url])
+        .mount("/", routes![index, redirect_url, post_url, submit_url])
         .mount("/static", FileServer::from("static"))
         .attach(Template::fairing())
 }
