@@ -10,11 +10,12 @@
 ## Installation Guide
 ### Note: Zeruel is currently in development.
 
-0. Install <a href="https://www.rust-lang.org/learn/get-started" rel="noreferrer noopener">Rust</a> & <a href="https://www.sqlite.org/download.html" rel="noreferrer noopener">SQLite</a> "Precompiled Binaries". 
+0. Install <a href="https://www.rust-lang.org/learn/get-started" rel="noreferrer noopener">Rust</a> & <a href="https://www.sqlite.org/download.html" rel="noreferrer noopener">SQLite</a>'s "Precompiled Binaries". 
 1. `git clone https://github.com/wiki-Bird/Zeruel`
 2. `cd Zeruel/rust_qr`
-3. `cargo run`
-4. Open `http://localhost:8000` in your browser.
+3. `diesel migration run`
+4. `cargo run`
+5. Open `http://localhost:8000` in your browser.
 
 <br/><br/>
 ## Images
@@ -33,5 +34,4 @@
     </ul> -->
   </li>
   <li><a href="https://www.sqlite.org/download.html" rel="noreferrer noopener">SQLite </a>3.42.0</li>
-  <li>HTML/CSS</li>
 </ul> 
