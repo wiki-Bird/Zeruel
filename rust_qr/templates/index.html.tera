@@ -6,7 +6,7 @@
     <div class="smallText">Generate QR-Codes & Shorten Links</div>
 </div>
 <form action="/" method="post">
-    <input class="urlInput" type="text" name="big_url" placeholder="Paste URL here...">
+    <input class="urlInput" type="url" name="big_url" placeholder="Paste URL here...">
     <input class="urlBtn" type="submit" value=">">
 </form>
 {% endblock content %}

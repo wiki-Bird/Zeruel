@@ -1,12 +1,36 @@
 // shorten.rs
 
 use rand::Rng;
+use diesel::prelude::*;
+use diesel::sqlite::SqliteConnection;
+use dotenvy::dotenv;
+use std::env;
+use crate::schema::urls;
+use crate::models;
 
 
 pub fn shorten_url(url: &str) -> String {
-    let rand_string = rand_string();
+    dotenv().ok();
+    let mut rand_url = rand_string();
+    let base_url = env::var("CURRENT_URL") // get url from .env file
+        .expect("CURRENT_URL must be set");
+    let short_url = format!("{}/{}", base_url, rand_url);
 
-    return rand_string;
+    // connect to SQLite database using diesel and check if rand_string exists as a short_url
+    let mut connection = establish_connection();
+    let mut exists = check_short(&short_url, &mut connection);
+    while exists {
+        rand_url = rand_string();
+        let short_url = format!("{}/{}", base_url, rand_url);
+        exists = check_short(&short_url, &mut connection);
+    }
+
+    if update_db(&short_url, &url, &mut connection) {
+        short_url
+    }
+    else {
+        panic!("Error updating database");
+    }
 }
 
 fn rand_string() -> String {
@@ -18,4 +42,47 @@ fn rand_string() -> String {
         .collect();
 
     return rand_string;
+}
+
+fn check_short(short_url: &str, conn: &mut SqliteConnection) -> bool {
+    // connect to SQLite database using diesel and check if short_url exists
+    // return true if it does, false if it doesn't
+    let connection = conn;
+    // check if short_url exists in database
+    let results = urls::table
+        .filter(urls::small_url.eq(short_url))
+        .load::<models::Url>(connection)
+        .expect("Error loading urls");
+
+    if results.len() == 0 {
+        return false;
+    }
+
+    return true;
+}
+
+fn update_db(short_url: &str, long_url: &str, conn: &mut SqliteConnection) -> bool {
+    // connect to SQLite database using diesel and insert the new short_url and long_url
+    let connection = conn;
+    let new_url = models::NewUrl {
+        small_url: short_url,
+        long_url,
+    };
+    
+
+    diesel::insert_into(urls::table)
+        .values(&new_url)
+        .execute(connection)
+        .expect("Error saving new url");
+
+    return true;
+}
+
+fn establish_connection() -> SqliteConnection {
+    dotenv().ok();
+
+    let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
+    SqliteConnection::establish(&database_url)
+        .unwrap_or_else(|_| panic!("Error connecting to {}", database_url))
+        
 }

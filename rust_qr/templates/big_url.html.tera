@@ -1,5 +1,5 @@
 {% extends "layout" %}
 
 {% block content %}
-<h1>Your big URL is: {{ big_url }}</h1>
+    <h1>Your minified URL is: <a href='{{ big_url }}' rel="noopener noreferrer"> {{ big_url }}</a></h1>
 {% endblock content %}

@@ -7,6 +7,9 @@ use rocket::response::Redirect;
 use rocket::form::Form;
 use percent_encoding::{utf8_percent_encode, AsciiSet, CONTROLS, NON_ALPHANUMERIC};
 
+mod schema;
+mod models;
+
 mod shorten;
 
 #[derive(FromForm)]

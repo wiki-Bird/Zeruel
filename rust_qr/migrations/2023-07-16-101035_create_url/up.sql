@@ -1,0 +1,9 @@
+-- Your SQL goes here
+
+CREATE TABLE IF NOT EXISTS urls (
+    id INTEGER NOT NULL PRIMARY KEY,
+    small_url VARCHAR(255) NOT NULL,
+    long_url VARCHAR(255) NOT NULL,
+    created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+    delete_at TEXT DEFAULT (CURRENT_TIMESTAMP + 1 * 24 * 60 * 60)
+);
