@@ -2,7 +2,5 @@
 
 {% block content %}
     <a href="/" rel="noopener noreferrer"><div class="backBtn">Back</div></a>
-    <h1>Your minified URL is:
-        <a href='{{ short_url }}' rel="noopener noreferrer" target="_blank"> {{ short_url }}</a>
-    </h1>
+    <h1>Error: {{ error }}</h1>
 {% endblock content %}

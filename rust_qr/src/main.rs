@@ -10,6 +10,8 @@ use percent_encoding::{utf8_percent_encode, NON_ALPHANUMERIC}; //AsciiSet, CONTR
 mod schema;
 mod models;
 mod shorten;
+mod load_short;
+mod db_connection;
 
 #[derive(FromForm)]
 pub struct UrlForm {
@@ -25,9 +27,15 @@ fn index() -> Template {
 #[get("/<short_url>")]
 fn redirect_url(short_url: String) -> Template {
     let mut context = HashMap::new();
-    context.insert("short_url", short_url);
 
-    Template::render("short_url", &context)
+    let long_url = load_short::load_long_url(&short_url);
+    if long_url == "URL ID not found".to_string() || long_url == "Long URL not found".to_string() {
+        context.insert("error", long_url);
+        return Template::render("error", &context);
+    }
+
+    context.insert("big_url", long_url);
+    Template::render("big_url", &context)
 }
 
 #[post("/", data = "<url_form>")]
@@ -44,8 +52,22 @@ fn submit_url(url: String) -> Template {
     let temp = shorten::shorten_url(&url);
 
     let mut context = HashMap::new();
-    context.insert("big_url", temp);
-    Template::render("big_url", &context)
+    context.insert("short_url", temp);
+    Template::render("short_url", &context)
+}
+
+
+#[catch(404)]
+fn not_found() -> Template {
+    let mut context = HashMap::new();
+    context.insert("error", "404 Not Found".to_string());
+    Template::render("error", &context)
+}
+#[catch(500)]
+fn internal_error() -> Template {
+    let mut context = HashMap::new();
+    context.insert("error", "500 Internal Server Error".to_string());
+    Template::render("error", &context)
 }
 
 
@@ -55,4 +77,5 @@ fn rocket() -> _ {
         .mount("/", routes![index, redirect_url, post_url, submit_url])
         .mount("/static", FileServer::from("static"))
         .attach(Template::fairing())
+        .register("/", catchers![not_found, internal_error])
 }

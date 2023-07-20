@@ -7,6 +7,7 @@ use dotenvy::dotenv;
 use std::env;
 use crate::schema::urls;
 use crate::models;
+use crate::db_connection;
 
 
 pub fn shorten_url(url: &str) -> String {
@@ -14,19 +15,19 @@ pub fn shorten_url(url: &str) -> String {
     let mut rand_url = rand_string();
     let base_url = env::var("CURRENT_URL") // get url from .env file
         .expect("CURRENT_URL must be set");
-    let short_url = format!("{}/{}", base_url, rand_url);
+    let short_url = format!("{}", rand_url);
 
     // connect to SQLite database using diesel and check if rand_string exists as a short_url
-    let mut connection = establish_connection();
+    let mut connection = db_connection::establish_connection();
     let mut exists = check_short(&short_url, &mut connection);
     while exists {
         rand_url = rand_string();
-        let short_url = format!("{}/{}", base_url, rand_url);
+        let short_url = format!("{}", rand_url);
         exists = check_short(&short_url, &mut connection);
     }
 
     if update_db(&short_url, &url, &mut connection) {
-        short_url
+        return base_url + "/" + &short_url;
     }
     else {
         panic!("Error updating database");
@@ -76,13 +77,4 @@ fn update_db(short_url: &str, long_url: &str, conn: &mut SqliteConnection) -> bo
         .expect("Error saving new url");
 
     return true;
-}
-
-fn establish_connection() -> SqliteConnection {
-    dotenv().ok();
-
-    let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
-    SqliteConnection::establish(&database_url)
-        .unwrap_or_else(|_| panic!("Error connecting to {}", database_url))
-        
 }
