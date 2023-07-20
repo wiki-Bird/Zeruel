@@ -13,4 +13,7 @@
             {% block content %}{% endblock content %}
         </div>
     </body>
+    <div class="bigCircle"></div>
+    <div class="bigSquare"></div>
+    <div class="smallSquare"></div>
 </html>

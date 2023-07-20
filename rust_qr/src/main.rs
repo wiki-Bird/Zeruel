@@ -5,7 +5,7 @@ use rocket_dyn_templates::Template;
 use std::collections::HashMap;
 use rocket::response::Redirect;
 use rocket::form::Form;
-use percent_encoding::{utf8_percent_encode, AsciiSet, CONTROLS, NON_ALPHANUMERIC};
+use percent_encoding::{utf8_percent_encode, NON_ALPHANUMERIC}; //AsciiSet, CONTROLS, 
 
 mod schema;
 mod models;

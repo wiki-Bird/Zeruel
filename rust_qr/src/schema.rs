@@ -7,5 +7,6 @@ diesel::table! {
         long_url -> Text,
         created_at -> Nullable<Text>,
         delete_at -> Nullable<Text>,
+        uses -> Nullable<Integer>,
     }
 }

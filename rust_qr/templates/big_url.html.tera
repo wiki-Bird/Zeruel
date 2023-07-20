@@ -1,5 +1,6 @@
 {% extends "layout" %}
 
 {% block content %}
+    <a href="/" rel="noopener noreferrer"><div class="backBtn">Back</div></a>
     <h1>Your minified URL is: <a href='{{ big_url }}' rel="noopener noreferrer"> {{ big_url }}</a></h1>
 {% endblock content %}

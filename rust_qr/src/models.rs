@@ -10,6 +10,7 @@ pub struct Url {
     pub long_url: String,
     pub created_at: Option<String>,
     pub delete_at: Option<String>,
+    pub uses: Option<i32>,
 }
 
 

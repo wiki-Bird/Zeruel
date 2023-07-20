@@ -6,9 +6,15 @@
 body {
     font-family: Inter, sans-serif;
     background-color: #20123a;
+    /* background: rgb(32,18,58);
+    background: -moz-linear-gradient(144deg, rgba(32,18,58,1) 0%, rgba(56,18,58,1) 100%);
+    background: -webkit-linear-gradient(144deg, rgba(32,18,58,1) 0%, rgba(56,18,58,1) 100%);
+    background: linear-gradient(144deg, rgba(32,18,58,1) 0%, rgba(56,18,58,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#20123a",endColorstr="#38123a",GradientType=1);  */
     color: #fff;
     line-height: 1;
     letter-spacing: .8px;
+    overflow: hidden;
 }
 .main {
     display: flex;
@@ -17,6 +23,50 @@ body {
     justify-content: center;
     height: 100vh;
 }
+
+
+.bigSquare, .smallSquare, .bigCircle, .bigCircle::before {
+    z-index: -1;
+    position: absolute;
+}
+
+.bigSquare {
+    width: 30vw;
+    height: 30vw;
+    border-radius: 50px;
+    rotate: 107deg;
+    bottom: -35%;
+    right: 0;
+    background: linear-gradient(144deg, rgba(32,18,58,1) 0%, rgba(56,18,58,1) 100%); 
+}
+
+.bigCircle, .bigCircle::before {
+    width: 30vw;
+    height: 30vw;
+    border-radius: 100%;
+    rotate: -23deg;
+    bottom: 0;
+    right: 10%;
+    background: linear-gradient(#20123a, #20123a) padding-box,
+    linear-gradient(to right, #20123a, #38123a) border-box;
+    opacity: 80%;
+    border: 20px solid transparent;
+}
+
+.smallSquare {
+    background: linear-gradient(100deg, rgba(32,18,58,1) 0%, rgba(56,18,58,1) 100%); 
+    width: 20vw;
+    height: 20vw;
+    border-radius: 20%;
+    rotate: -107deg;
+    bottom: -10%;
+    left: 0;
+    opacity: 30%;
+}
+
+
+
+
 .textDiv {
     margin-bottom: 6rem;
     font-weight: 700;
@@ -69,4 +119,30 @@ form {
 }
 .urlBtn:hover {
     background-color: #ff4f5e;
+}
+
+.backBtn {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    border: 3px solid #ff4f5e;
+    background-color: #ff4f5e50;
+    border-radius: 5px;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    transition: all .2s ease;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.2rem;
+    font-family: Inter, sans-serif;
+    /* vertically centre text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.backBtn:hover {
+    background-color: #ff4f5e;
+    color: #20123a;
 }
