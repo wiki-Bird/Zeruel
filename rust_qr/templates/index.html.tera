@@ -9,6 +9,5 @@
     <input class="urlInput" type="url" name="big_url" placeholder="Paste URL here...">
     <input class="urlBtn" type="submit" value=">">
 </form>
-<div class="bigCircle"></div>
-<div class="bigSquare"></div>
+
 {% endblock content %}

@@ -1,4 +1,4 @@
-<p align="center"><a href="#" target="_blank" rel="noreferrer noopener"><img width="150" alt="Zeruel Logo" src="https://media.discordapp.net/attachments/590667063165583409/1129305206400757830/Zeruallogoo.png?width=682&height=682"></a></p>
+<p align="center"><a href="#" target="_blank" rel="noreferrer noopener"><img width="150" alt="Zeruel Logo" src="https://media.discordapp.net/attachments/590667063165583409/1131711335634321419/Zeruallogoo2.png"></a></p>
 
 
 <h3 align="center"> Zeruel: Generate QR-Codes & Shorten Links</h3>
