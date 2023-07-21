@@ -3,7 +3,7 @@
 
 <h3 align="center"> Zeruel: Generate QR-Codes & Shorten Links</h3>
 
-<p align="center">Built with Rust, Zeruel is a lightweight & easy to use QR-Code generator and URL minifier.</p>
+<p align="center">Built with Rust & SQLite, Zeruel is a lightweight & easy to use QR-Code generator and URL shortner.</p>
 
 
 <br/><br/>

@@ -4,4 +4,5 @@
     <h1>Redirecting to: 
         <a href='{{ big_url }}' rel="noopener noreferrer" target="_blank"> {{ big_url }}</a>
     </h1>
+    <meta http-equiv="Refresh" content="0;URL={{ big_url }}">
 {% endblock content %}
