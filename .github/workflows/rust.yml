@@ -11,18 +11,17 @@ env:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
-      with:
-        path: 'rust_qr' # Specify the subdirectory path where you want to check out the code
 
     - name: Build
-      working-directory: ./rust_qr # Set the working directory to the subdirectory
-      run: cargo build --verbose
+      run: |
+        cd rust_qr
+        cargo build --verbose
 
     - name: Run tests
-      working-directory: ./rust_qr # Set the working directory to the subdirectory
-      run: cargo test --verbose
+      run: |
+        cd rust_qr
+        cargo test --verbose
