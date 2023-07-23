@@ -1,8 +1,64 @@
 {% extends "layout" %}
 
 {% block content %}
-    <a href="/" rel="noopener noreferrer"><div class="backBtn">Back</div></a>
-    <h1>Your minified URL is:
-        <a href='{{ short_url }}' rel="noopener noreferrer" target="_blank"> {{ short_url }}</a>
-    </h1>
+    <form action="/" method="post">
+        <input class="urlInput" type="url" name="big_url" placeholder="{{ big_url }}">
+        <input class="urlBtn" type="submit" value=">">
+    </form>
+    <div class="linkInfo">
+        <div class="qrCodeArea">
+            <div class="downloadBtn" onclick="download_qr_png()">↓</div>
+            <div class="qrImage">{{ qr_svg | safe }}</div>
+            <!-- <div class="qrImage"><img src="data:image/png;base64,{{ qr_png }}"></div> -->
+            <input id="qr_png" type="hidden" value="{{ qr_png }}">
+        </div>
+        <div class="newUrlArea">
+            <div class="sumDiv">Your shortened URL:</div>
+            <div class="newUrlDiv">
+                <a href="{{ short_url }}" rel="noopener noreferrer" target="_blank" id="short_url_link">{{ short_url_clipped }}</a>
+            </div>
+            <div class="newUrlBtns">
+                <div class="newUrlBtn" onclick="copy_short_url()">Copy</div>
+                <div class="newUrlBtn" onclick="share_short_url()">Share</div>
+            </div>  
+        </div>
+    </div>
+
+    <script>
+        function download_qr_png() {
+            // Get the base64 data from the hidden input
+            var base64 = document.getElementById('qr_png').value;
+            
+            // Create a Blob from the base64 data
+            var binary = atob(base64);
+            var len = binary.length;
+            var buffer = new ArrayBuffer(len);
+            var view = new Uint8Array(buffer);
+            for (var i = 0; i < len; i++) {
+                view[i] = binary.charCodeAt(i);
+            }
+            var blob = new Blob([view], {type: "image/png"});
+            
+            // Create a link element and set its href to the Blob URL
+            var link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+
+            // get the filename from after / in short_url_clipped
+            var filename = "{{ short_url_clipped }}".split("&#x2F;").pop();
+            console.log(filename)
+
+            link.download = filename + ".png";
+            link.click();
+        }
+
+        function copy_short_url() {
+            var copyText = document.getElementById("short_url_link").getAttribute("href");
+            navigator.clipboard.writeText(copyText);
+        }
+
+        function share_short_url() {
+            var shareText = "{{ short_url }}";
+            
+        }
+    </script>
 {% endblock content %}

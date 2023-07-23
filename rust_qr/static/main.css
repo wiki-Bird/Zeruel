@@ -6,11 +6,6 @@
 body {
     font-family: Inter, sans-serif;
     background-color: #20123a;
-    /* background: rgb(32,18,58);
-    background: -moz-linear-gradient(144deg, rgba(32,18,58,1) 0%, rgba(56,18,58,1) 100%);
-    background: -webkit-linear-gradient(144deg, rgba(32,18,58,1) 0%, rgba(56,18,58,1) 100%);
-    background: linear-gradient(144deg, rgba(32,18,58,1) 0%, rgba(56,18,58,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#20123a",endColorstr="#38123a",GradientType=1);  */
     color: #fff;
     line-height: 1;
     letter-spacing: .8px;
@@ -117,14 +112,73 @@ form {
     outline: 0;
     box-shadow: 0 0 10px #ff4f5e50;
 }
-.urlBtn:hover {
-    background-color: #ff4f5e;
+
+.linkInfo {
+    /* background-color: red; */
+    width: 46rem;
+    /* 46rem */
+    display: flex;
+    flex-direction: row;
+    margin-top: 4rem;
 }
 
-.backBtn {
+.qrCodeArea {
+    width: 30%;
+    margin-right: 3rem;
+    display: relative;
+    transition: all .2s ease;
+}
+
+.qrImage {
+    background-color: white;
+    box-shadow: 0 0 10px #ffffff65;
+    padding: 5px;
+    border-radius: 5px 5px;
+}
+
+.qrImage img, .qr_img {
+    width: 100%;
+    height: auto;
+}
+
+.newUrlBtn:hover, .urlBtn:hover, .backBtn:hover {
+    background-color: #ff4f5e;
+    color: #20123a;
+}
+
+.newUrlArea {
+    width: 70%;
+    position: relative;
+}
+
+.sumDiv {
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 1.3rem;
+}
+
+.newUrlDiv a {
+    color: #ff4f5e;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 2rem;
+    transition: all .2s ease;
+    text-shadow: 0 0 10px #ff4f5e50;
+}
+
+.newUrlDiv a:hover {
+    text-decoration: underline;
+}
+
+.newUrlBtns {
     position: absolute;
-    top: 2rem;
-    left: 2rem;
+    bottom: 0px;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.newUrlBtn, .backBtn {
     border: 3px solid #ff4f5e;
     background-color: #ff4f5e50;
     border-radius: 5px;
@@ -133,17 +187,42 @@ form {
     transition: all .2s ease;
     text-decoration: none;
     color: #fff;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-family: Inter, sans-serif;
-    /* vertically centre text */
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 3rem;
-    
+    height: 2.5rem;
+    margin-right: 1rem;
 }
 
-.backBtn:hover {
+.downloadBtn {
+    z-index: 2;
+    position: absolute;
+    border: 3px solid #ff4f5e;
+    color: #ff4f5e;
+    background-color: #20123ade;
+    border-radius: 5px;
+    height: 2.5rem;
+    width: 2.5rem;
+    cursor: pointer;
+    transition: all .3s ease;
+    margin: 10px;
+    display: none;
+    /* align text center */
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    /* no text select */
+    user-select: none;
+}
+
+.downloadBtn:hover {
     background-color: #ff4f5e;
     color: #20123a;
+}
+
+.qrCodeArea:hover .downloadBtn {
+    display: flex;
 }

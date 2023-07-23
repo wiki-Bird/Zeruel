@@ -1,6 +1,6 @@
 {% extends "layout" %}
 
 {% block content %}
-    <a href="/" rel="noopener noreferrer"><div class="backBtn">Back</div></a>
     <h1>Error: {{ error }}</h1>
+    <a href="/" style="margin-top:3rem;" ><div class="backBtn">Back</div></a>
 {% endblock content %}

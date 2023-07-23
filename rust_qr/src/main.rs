@@ -12,6 +12,7 @@ mod models;
 mod shorten;
 mod load_short;
 mod db_connection;
+mod qr_maker;
 
 #[derive(FromForm)]
 pub struct UrlForm {
@@ -49,10 +50,17 @@ fn post_url(url_form: Form<UrlForm>) -> Redirect {
 #[get("/submit/<url>")]
 fn submit_url(url: String) -> Template {
 
-    let temp = shorten::shorten_url(&url);
+    let url_short = shorten::shorten_url(&url);
+    let url_short_clipped = url_short.trim_start_matches("https://").trim_start_matches("http://").to_string();
+    let qr_svg = qr_maker::generate_qr(&url_short);
+    let qr_png = qr_maker::generate_qr_png(&url_short);
 
     let mut context = HashMap::new();
-    context.insert("short_url", temp);
+    context.insert("short_url", url_short);
+    context.insert("short_url_clipped", url_short_clipped);
+    context.insert("big_url", url);
+    context.insert("qr_svg", qr_svg);
+    context.insert("qr_png", qr_png);
     Template::render("short_url", &context)
 }
 

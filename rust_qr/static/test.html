@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Zeruel</title>
+        <link rel="stylesheet" href="main.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png">
+        <link rel="manifest" href="/static/images/site.webmanifest">
+    </head>
+    <body>
+        <div class="main">
+            <form action="/" method="post">
+                <input class="urlInput" type="url" name="big_url" placeholder="https://test.com/hi">
+                <input class="urlBtn" type="submit" value=">">
+            </form>
+            <div class="linkInfo">
+                <div class="qrCodeArea">
+                    <div class="qrImage"><img src="canvas.png"></div>
+                </div>
+                <div class="newUrlArea">
+                    <div class="sumDiv">Your shortened URL:</div>
+                    <div class="newUrlDiv">
+                        <a href="#" rel="noopener noreferrer" target="_blank">localhost:8000/abc123</a>
+                    </div>
+                    <div class="newUrlBtns">
+                        <div class="newUrlBtn">Copy</div>
+                        <div class="newUrlBtn">Share</div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </body>
+    <div class="bigCircle"></div>
+    <div class="bigSquare"></div>
+    <div class="smallSquare"></div>
+</html>
