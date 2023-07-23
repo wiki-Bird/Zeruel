@@ -5,7 +5,6 @@ use qrcode::render::svg;
 use image::Luma;
 use image::png::PngEncoder;
 use base64;
-use image::Pixel;
 use image::EncodableLayout;
 use image::ColorType;
 
@@ -24,10 +23,6 @@ pub fn generate_qr(url: &str) -> String {
 
     return image_with_class;
 }
-
-
-
-
 
 // generate a QR code from the url as a png and encode it as base64
 pub fn generate_qr_png(url: &str) -> String {
