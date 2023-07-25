@@ -15,10 +15,12 @@
 
 0. Install <a href="https://www.rust-lang.org/learn/get-started" rel="noreferrer noopener">Rust</a> & <a href="https://www.sqlite.org/download.html" rel="noreferrer noopener">SQLite</a>'s "Precompiled Binaries". 
 1. `git clone https://github.com/wiki-Bird/Zeruel`
-2. `cd Zeruel/rust_qr`
-3. `diesel migration run`
-4. `cargo run`
-5. Open `http://localhost:8000` in your browser.
+2. `cd Zeruel`
+3. `cargo build`
+4. `cd Zeruel/rust_qr`
+5. `diesel migration run`
+6. `cargo run`
+7. Open `http://localhost:8000` in your browser.
 
 <br/><br/>
 ## Images
