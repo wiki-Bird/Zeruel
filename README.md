@@ -23,7 +23,9 @@
 <br/><br/>
 ## Images
 
-<a href="https://media.discordapp.net/attachments/590667063165583409/1131709432569548830/image.png?width=1360&height=702" target="_blank" rel="noreferrer noopener"><img width="400" src="https://media.discordapp.net/attachments/590667063165583409/1131709432569548830/image.png"></a>
+
+<img width="400" src="https://media.discordapp.net/attachments/590667063165583409/1131709432569548830/image.png">
+<img width="400" src="https://media.discordapp.net/attachments/590667063165583409/1132596122242781194/image.png">
 
 <br/><br/>
 ## Core Dependencies
