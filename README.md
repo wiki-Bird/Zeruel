@@ -1,4 +1,4 @@
-<p align="center"><a href="#" target="_blank" rel="noreferrer noopener"><img width="150" alt="Zeruel Logo" src="https://media.discordapp.net/attachments/590667063165583409/1131711335634321419/Zeruallogoo2.png"></a></p>
+<p align="center"><a href="#" target="_blank" rel="noreferrer noopener"><img width="150" alt="Zeruel Logo" src="./images/Zeruallogoo2.png"></a></p>
 
 
 <h3 align="center"> Zeruel: Generate QR-Codes & Shorten Links</h3>
@@ -27,8 +27,8 @@
 ## Images
 
 
-<img width="400" src="https://media.discordapp.net/attachments/590667063165583409/1131709432569548830/image.png">
-<img width="400" src="https://media.discordapp.net/attachments/590667063165583409/1132596122242781194/image.png">
+<img width="400" src="./images/image2.png">
+<img width="400" src="./images/image3.png">
 
 <br/><br/>
 ## Core Dependencies
